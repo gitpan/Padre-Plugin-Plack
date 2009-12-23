@@ -1,7 +1,7 @@
 ---
-abstract: 'PSGI/Plack plugin for for Padre'
+abstract: 'PSGI/Plack plugin for Padre'
 author:
-  - 'Patrick Donelan <pat@patspam.com>'
+  - 'Patrick Donelan <pdonelan@cpan.org>'
 build_requires:
   ExtUtils::MakeMaker: 6.42
   Test::More: 0
@@ -20,8 +20,13 @@ no_index:
     - share
     - t
 requires:
+  File::Basename: 0
+  File::Find::Rule: 0
+  File::Which: 0
   Padre: 0.53
   Plack: 0.9021
+  Proc::Killfam: 0
+  Scalar::Util: 0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.01
+version: 0.02
