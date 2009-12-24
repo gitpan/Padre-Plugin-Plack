@@ -3,11 +3,12 @@ use base 'Padre::Plugin';
 
 use warnings;
 use strict;
+use utf8;
 
 use Padre::Util ('_T');
-use Padre::Debug;
+use Padre::Logger;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 # Declare the Padre interfaces this plugin uses
 sub padre_interfaces {
@@ -35,7 +36,7 @@ sub menu_plugins {
     for my $basename ( sort keys %PSGI_EXAMPLES ) {
         Wx::Event::EVT_MENU(
             $main,
-            $app_menu->Append( -1, _T($basename) ),
+            $app_menu->Append( -1, $basename ),
             sub {
                 $self->on_app_load( $PSGI_EXAMPLES{$basename} );
                 return;
@@ -48,7 +49,7 @@ sub menu_plugins {
 
     Wx::Event::EVT_MENU(
         $main,
-        $docs_menu->Append( -1, _T('plackperl.org') ),
+        $docs_menu->Append( -1, 'plackperl.org' ),
         sub {
             Padre::Wx::launch_browser('http://plackperl.org');
         }
@@ -83,7 +84,7 @@ sub on_app_load {
     unless ($template) {
 
         # Rare failure, no need to translate
-        $self->main->error("Failed to find template '$file'");
+        $self->main->error( sprintf( _T('Failed to open template file %s'), $file ) );
         return;
     }
 
@@ -152,8 +153,9 @@ sub on_panel_load {
     }
     
     # Show the panel, and pass an onclose callback
-    Padre::Current->main->bottom->show( $doc->panel, sub { 
-        $self->main->error(q{Sorry Dave, I can't do that});
+    Padre::Current->main->bottom->show( $doc->panel, sub {
+        # Closing the panel causes bad things to happen
+        $self->main->error(_T(q{'Sorry Dave, I can't do that - you need to close the corresponding file tab to close this panel}));
         
         # We can't actually cancel the close, so re-create it
         $self->plackdown($doc);
@@ -186,7 +188,7 @@ sub on_doc_load {
     TRACE('->on_doc_load') if DEBUG;
 
     if ( !$doc->isa('Padre::Document::PSGI') ) {
-        $self->error('Not a Padre::Document::PSGI, something is broken with Padre::Plugin::Plack');
+        $self->error( sprintf( _T('Expected a PSGI document, but instead got: %s'), ref $doc ) );
         return;
     }
 
@@ -208,7 +210,7 @@ sub on_doc_close {
     TRACE('->on_doc_close') if DEBUG;
     
     if ( !$doc->isa('Padre::Document::PSGI') ) {
-        $self->error('Not a Padre::Document::PSGI, something is broken with Padre::Plugin::Plack');
+        $self->error( sprintf( _T('Expected a PSGI document, but instead got: %s'), ref $doc ) );
         return;
     }
     
@@ -295,7 +297,7 @@ sub plackup {
     require File::Which;
     my $plackup = File::Which::which('plackup');
     if (!$plackup) {
-        $main->error('Command "plackup" not found in $PATH, are you sure you have Plack installed correctly?');
+        $main->error(_T('plackup command not found, please check your Plack installation and $PATH'));
         return;
     }
     
@@ -470,19 +472,19 @@ sub build_panel {
     );
     unshift @servers, _T('Let plackup guess');
     $top_box->AddSpacer(5);
-    $top_box->Add( Wx::StaticText->new( $panel, -1, _T('Server:') ), 0, Wx::wxALIGN_CENTER_VERTICAL );
+    $top_box->Add( Wx::StaticText->new( $panel, -1, _T('Server') . ':' ), 0, Wx::wxALIGN_CENTER_VERTICAL );
     $panel->{server} = Wx::ComboBox->new( $panel, -1, 'Standalone', Wx::wxDefaultPosition, Wx::wxDefaultSize, [ @servers ], Wx::wxCB_DROPDOWN );
     $top_box->Add( $panel->{server}, 0, Wx::wxALIGN_CENTER_VERTICAL );
     
     # Port
     $top_box->AddSpacer(5);
-    $top_box->Add( Wx::StaticText->new( $panel, -1, _T('Port:') ), 0, Wx::wxALIGN_CENTER_VERTICAL );
+    $top_box->Add( Wx::StaticText->new( $panel, -1, _T('Port') . ':' ), 0, Wx::wxALIGN_CENTER_VERTICAL );
     $panel->{port} = Wx::TextCtrl->new( $panel, -1, '5000' );
     $top_box->Add( $panel->{port}, 0, Wx::wxALIGN_CENTER_VERTICAL );
     
     # Plackup Options
     $top_box->AddSpacer(5);
-    $top_box->Add( Wx::StaticText->new( $panel, -1, _T('Options:') ), 0, Wx::wxALIGN_CENTER_VERTICAL );
+    $top_box->Add( Wx::StaticText->new( $panel, -1, _T('Options') . ':' ), 0, Wx::wxALIGN_CENTER_VERTICAL );
     $panel->{plackup_options} = Wx::TextCtrl->new( $panel, -1, '' );
     $top_box->Add( $panel->{plackup_options}, 0, Wx::wxALIGN_CENTER_VERTICAL );
     
@@ -615,9 +617,13 @@ Make Padre your domain-specific IDE today :)
 
 Blog post with screenshots: L<http://blog.patspam.com/2009/padrepluginplack>
 
-=head1 AUTHOR
+=head1 ACKNOWLEDGEMENTS
 
-Patrick Donelan, C<< <pdonelan at cpan.org> >>
+=encoding utf8
+
+Patrick Donelan (PDONELAN) E<lt>pat@patspam.comE<gt>
+
+Gábor Szabó - גאבור סבו (SZABGAB) E<lt>szabgab@gmail.comE<gt>
 
 =head1 BUGS
 
@@ -635,13 +641,9 @@ You can also look for information at:
 
 =over 4
 
-=item * GitHub Project Page
+=item * RT: CPAN's request tracker
 
-L<http://github.com/pdonelan/Padre-Plugin-Plack>
-
-=item * GitHub Issue Tracker
-
-L<http://github.com/pdonelan/Padre-Plugin-Plack/issues>
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Padre-Plugin-Catalyst>
 
 =item * AnnoCPAN: Annotated CPAN documentation
 

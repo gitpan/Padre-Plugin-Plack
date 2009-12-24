@@ -4,6 +4,7 @@ author:
   - 'Patrick Donelan <pdonelan@cpan.org>'
 build_requires:
   ExtUtils::MakeMaker: 6.42
+  Locale::Msgfmt: 0.14
   Test::More: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.42
@@ -28,5 +29,7 @@ requires:
   Proc::Killfam: 0
   Scalar::Util: 0
 resources:
+  homepage: http://padre.perlide.org/
   license: http://dev.perl.org/licenses/
-version: 0.02
+  repository: http://svn.perlide.org/padre/trunk/Padre-Plugin-Plack
+version: 0.03

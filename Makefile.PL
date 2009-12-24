@@ -1,4 +1,8 @@
-use inc::Module::Install;
+use inc::Module::Install 0.91;
+
+if ( -e 'MANIFEST.SKIP' ) {
+    system( 'pod2text lib/Padre/Plugin/Plack.pm > README' );
+}
 
 name 'Padre-Plugin-Plack';
 all_from 'lib/Padre/Plugin/Plack.pm';
@@ -15,7 +19,11 @@ requires 'Scalar::Util';
 
 test_requires 'Test::More';
 
-install_share('share');
+homepage       'http://padre.perlide.org/';
+repository     'http://svn.perlide.org/padre/trunk/Padre-Plugin-Plack';
+is_padre_plugin; # authors: install Module::Install::PadrePlugin
+
+install_share_with_mofiles; # install Locale::Msgfmt
 
 auto_install;
 

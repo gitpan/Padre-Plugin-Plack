@@ -4,13 +4,13 @@ use 5.008;
 use strict;
 use warnings;
 
-use Padre::Debug;
+use Padre::Logger;
 use Padre::Document::Perl;
 use Padre::MimeTypes;
 
 our @ISA = 'Padre::Document::Perl';
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use Class::XSAccessor accessors => [qw(icon_path icon_set panel plugin process)];
 

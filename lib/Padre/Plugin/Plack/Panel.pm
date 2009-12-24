@@ -3,14 +3,14 @@ package Padre::Plugin::Plack::Panel;
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use Padre::Wx   ();
 use Padre::Util ('_T');
 use Wx          ();
 use base 'Wx::Panel';
 use Padre::Current;
-use Padre::Debug;
+use Padre::Logger;
 
 sub new {
     my $class = shift;
@@ -44,7 +44,7 @@ sub gettext_label {
     if (my $filename = $doc && $doc->filename) {
         return File::Basename::basename($filename);
     } else {
-        return _T( 'Plackup' );
+        return 'Plackup';
     }
 }
 
