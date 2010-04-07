@@ -1,4 +1,16 @@
+# 
+# This file is part of Padre-Plugin-Plack
+# 
+# This software is copyright (c) 2010 by Patrick Donelan.
+# 
+# This is free software; you can redistribute it and/or modify it under
+# the same terms as the Perl 5 programming language system itself.
+# 
 package Padre::Plugin::Plack;
+BEGIN {
+  $Padre::Plugin::Plack::VERSION = '0.100970';
+}
+# ABSTRACT: PSGI/Plack plugin for Padre
 use base 'Padre::Plugin';
 
 use warnings;
@@ -7,8 +19,6 @@ use utf8;
 
 use Padre::Util ('_T');
 use Padre::Logger;
-
-our $VERSION = '0.04';
 
 # Declare the Padre interfaces this plugin uses
 sub padre_interfaces {
@@ -231,7 +241,7 @@ sub on_about_load {
           . " $Plack::VERSION\n"
           . 'http://plackperl.org'
     );
-    $about->SetVersion($VERSION);
+    $about->SetVersion($Padre::Plugin::Plack::VERSION);
     Class::Unload->unload('Plack');
 
     Wx::AboutBox($about);
@@ -552,7 +562,9 @@ sub build_panel {
 }
 
 1;
-__END__
+
+
+=pod
 
 =head1 NAME
 
@@ -560,15 +572,13 @@ Padre::Plugin::Plack - PSGI/Plack plugin for Padre
 
 =head1 VERSION
 
-Version 0.04
+version 0.100970
 
 =head1 SYNOPSIS
 
-	cpan install Padre::Plugin::Plack;
-
-Then enable it via L<Padre>, The Perl IDE:
-
-        Padre > Plugins > Plugin Manager > Plack > enable
+    # cpan install Padre::Plugin::Plack;
+    # Then enable it via L<Padre>, The Perl IDE: 
+    # Padre > Plugins > Plugin Manager > Plack > enable
 
 =head1 DESCRIPTION
 
@@ -600,13 +610,11 @@ This makes for quite a nice, if somewhat minimal "Plack IDE" experience
 The plugin integrates all of the L<Plack> example "dot-psgi”"files as templates 
 that can be used to create different types of Plack apps straight from the GUI menu.
 
-
 The pre-populated list of Plack servers and the simple start/stop button makes for 
 a nice way of exploring the Plack server ecosystem. You can use the other panel 
 options to enter a specific port to run on, toggle auto-start mode and pass additional
 options to plackup (options that start with C<--> are passed through to the backend 
 server).
-
 
 The output panel is similar to the output panel that Padre normally displays when you 
 execute Perl files, except that you get one panel per .psgi file meaning that you can 
@@ -624,10 +632,6 @@ Ruby Rack support comes to mind as a trivial example.
 Make Padre your domain-specific IDE today :)
 
 Blog post with screenshots: L<http://blog.patspam.com/2009/padrepluginplack>
-
-=head1 AUTHOR
-
-Patrick Donelan (PDONELAN) E<lt>pat@patspam.comE<gt>
 
 =head1 CONTRIBUTORS
 
@@ -659,47 +663,23 @@ Brazilian Portuguese - Breno G. de Oliveira (garu)
 
 =back
 
-=head1 BUGS
-
-Please report any bugs or feature requests to C<bug-padre-plugin-plack at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Padre-Plugin-Plack>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
-
-=head1 SUPPORT
-
-You can find documentation for this module with the perldoc command.
-
-    perldoc Padre::Plugin::Plack
-
-You can also look for information at:
-
-=over 4
-
-=item * RT: CPAN's request tracker
-
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Padre-Plugin-Catalyst>
-
-=item * AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/Padre-Plugin-Plack>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/Padre-Plugin-Plack>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/Padre-Plugin-Plack/>
-
-=back
-
-
 =head1 SEE ALSO
 
 L<Plack>, L<Padre>
 
+=head1 AUTHOR
 
-=head1 COPYRIGHT & LICENSE
+  Patrick Donelan <pat@patspam.com>
 
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Patrick Donelan.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+
+
+__END__
+

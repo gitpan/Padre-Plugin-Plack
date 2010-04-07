@@ -2,14 +2,12 @@ NAME
     Padre::Plugin::Plack - PSGI/Plack plugin for Padre
 
 VERSION
-    Version 0.04
+    version 0.100970
 
 SYNOPSIS
-            cpan install Padre::Plugin::Plack;
-
-    Then enable it via Padre, The Perl IDE:
-
-            Padre > Plugins > Plugin Manager > Plack > enable
+        # cpan install Padre::Plugin::Plack;
+        # Then enable it via L<Padre>, The Perl IDE: 
+        # Padre > Plugins > Plugin Manager > Plack > enable
 
 DESCRIPTION
     As the name suggests, Padre::Plugin::Plack adds Plack awareness to
@@ -69,9 +67,6 @@ DESCRIPTION
     Blog post with screenshots:
     <http://blog.patspam.com/2009/padrepluginplack>
 
-AUTHOR
-    Patrick Donelan (PDONELAN) <pat@patspam.com>
-
 CONTRIBUTORS
     *   Gábor Szabó - גאבור סבו (SZABGAB) <szabgab@gmail.com>
 
@@ -82,40 +77,15 @@ TRANSLATORS
 
     *   Brazilian Portuguese - Breno G. de Oliveira (garu)
 
-BUGS
-    Please report any bugs or feature requests to "bug-padre-plugin-plack at
-    rt.cpan.org", or through the web interface at
-    <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Padre-Plugin-Plack>. I
-    will be notified, and then you'll automatically be notified of progress
-    on your bug as I make changes.
-
-SUPPORT
-    You can find documentation for this module with the perldoc command.
-
-        perldoc Padre::Plugin::Plack
-
-    You can also look for information at:
-
-    *   RT: CPAN's request tracker
-
-        <http://rt.cpan.org/NoAuth/Bugs.html?Dist=Padre-Plugin-Catalyst>
-
-    *   AnnoCPAN: Annotated CPAN documentation
-
-        <http://annocpan.org/dist/Padre-Plugin-Plack>
-
-    *   CPAN Ratings
-
-        <http://cpanratings.perl.org/d/Padre-Plugin-Plack>
-
-    *   Search CPAN
-
-        <http://search.cpan.org/dist/Padre-Plugin-Plack/>
-
 SEE ALSO
     Plack, Padre
 
-COPYRIGHT & LICENSE
-    This program is free software; you can redistribute it and/or modify it
-    under the same terms as Perl itself.
+AUTHOR
+      Patrick Donelan <pat@patspam.com>
+
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2010 by Patrick Donelan.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
 

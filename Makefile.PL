@@ -1,27 +1,72 @@
-use inc::Module::Install 0.91;
 
-name 'Padre-Plugin-Plack';
-all_from 'lib/Padre/Plugin/Plack.pm';
-author 'Patrick Donelan <pdonelan@cpan.org>';
-license 'perl';
-readme_from 'lib/Padre/Plugin/Plack.pm';
+use strict;
+use warnings;
 
-requires 'Padre' => '0.53';
-requires 'Plack' => '0.9021';
-requires 'File::Basename';
-requires 'File::Find::Rule';
-requires 'File::Which';
-requires 'Proc::Killfam';
-requires 'Scalar::Util';
+ BEGIN { require 5.008; } 
 
-test_requires 'Test::More';
+use ExtUtils::MakeMaker 6.31;
 
-homepage       'http://padre.perlide.org/';
-repository     'http://svn.perlide.org/padre/trunk/Padre-Plugin-Plack';
-is_padre_plugin; # authors: install Module::Install::PadrePlugin
+use File::ShareDir::Install;
+install_share "share";
 
-install_share_with_mofiles; # install Locale::Msgfmt
 
-auto_install;
+my %WriteMakefileArgs = (
+                       'test' => {
+                                   'TESTS' => 't/*.t'
+                                 },
+                       'NAME' => 'Padre::Plugin::Plack',
+                       'DISTNAME' => 'Padre-Plugin-Plack',
+                       'CONFIGURE_REQUIRES' => {
+                                                 'ExtUtils::MakeMaker' => '6.31',
+                                                 'Module::Build' => '0.3601',
+                                                 'File::ShareDir::Install' => '0.03'
+                                               },
+                       'AUTHOR' => 'Patrick Donelan <pat@patspam.com>',
+                       'BUILD_REQUIRES' => {
+                                             'Test::More' => '0',
+                                             'File::Find' => '0',
+                                             'File::Temp' => '0',
+                                             'Module::Build' => '0.3601'
+                                           },
+                       'ABSTRACT' => 'PSGI/Plack plugin for Padre',
+                       'EXE_FILES' => [],
+                       'VERSION' => '0.100970',
+                       'PREREQ_PM' => {
+                                        'Wx' => '0',
+                                        'Padre::Util' => '0',
+                                        'Scalar::Util' => '0',
+                                        'Padre::Wx::Output' => '0',
+                                        'Class::Unload' => '0',
+                                        'Padre::Document::Perl' => '0',
+                                        'Proc::Killfam' => '0',
+                                        'File::Which' => '0',
+                                        'Padre' => '0.59',
+                                        'Padre::Wx' => '0',
+                                        'Padre::MimeTypes' => '0',
+                                        'File::Find::Rule' => '0',
+                                        'Plack' => '0.9021',
+                                        'Padre::Current' => '0',
+                                        'Class::XSAccessor' => '0',
+                                        'utf8' => '0',
+                                        'Padre::Logger' => '0',
+                                        'Padre::Plugin' => '0',
+                                        'Wx::Perl::ProcessStream' => '0',
+                                        'File::Basename' => '0'
+                                      },
+                       'LICENSE' => 'perl'
+                     );
 
-WriteAll;
+
+delete $WriteMakefileArgs{BUILD_REQUIRES}
+  unless eval { ExtUtils::MakeMaker->VERSION(6.56) };
+
+delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
+  unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
+
+WriteMakefile(%WriteMakefileArgs);
+
+package
+MY;
+use File::ShareDir::Install qw(postamble);
+
+

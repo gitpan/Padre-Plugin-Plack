@@ -1,35 +1,46 @@
 ---
 abstract: 'PSGI/Plack plugin for Padre'
 author:
-  - 'Patrick Donelan <pdonelan@cpan.org>'
+  - 'Patrick Donelan <pat@patspam.com>'
 build_requires:
-  ExtUtils::MakeMaker: 6.42
-  Locale::Msgfmt: 0.14
+  File::Find: 0
+  File::Temp: 0
+  Module::Build: 0.3601
   Test::More: 0
 configure_requires:
-  ExtUtils::MakeMaker: 6.42
-distribution_type: module
-generated_by: 'Module::Install version 0.94'
+  ExtUtils::MakeMaker: 6.31
+  File::ShareDir::Install: 0.03
+  Module::Build: 0.3601
+generated_by: 'Dist::Zilla version 2.100922'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: Padre-Plugin-Plack
-no_index:
-  directory:
-    - inc
-    - share
-    - t
+recommends: {}
 requires:
+  Class::Unload: 0
+  Class::XSAccessor: 0
   File::Basename: 0
   File::Find::Rule: 0
   File::Which: 0
-  Padre: 0.53
+  Padre: 0.59
+  Padre::Current: 0
+  Padre::Document::Perl: 0
+  Padre::Logger: 0
+  Padre::MimeTypes: 0
+  Padre::Plugin: 0
+  Padre::Util: 0
+  Padre::Wx: 0
+  Padre::Wx::Output: 0
   Plack: 0.9021
   Proc::Killfam: 0
   Scalar::Util: 0
+  Wx: 0
+  Wx::Perl::ProcessStream: 0
+  perl: 5.008
+  utf8: 0
 resources:
-  homepage: http://padre.perlide.org/
-  license: http://dev.perl.org/licenses/
-  repository: http://svn.perlide.org/padre/trunk/Padre-Plugin-Plack
-version: 0.04
+  homepage: http://padre.perlide.org
+  repository: http://github.com/pdonelan/Padre-Plugin-Plack
+version: 0.100970

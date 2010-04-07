@@ -1,4 +1,16 @@
+# 
+# This file is part of Padre-Plugin-Plack
+# 
+# This software is copyright (c) 2010 by Patrick Donelan.
+# 
+# This is free software; you can redistribute it and/or modify it under
+# the same terms as the Perl 5 programming language system itself.
+# 
 package Padre::Document::PSGI;
+BEGIN {
+  $Padre::Document::PSGI::VERSION = '0.100970';
+}
+# ABSTRACT: Handlers PSGI files in Padre
 
 use 5.008;
 use strict;
@@ -9,8 +21,6 @@ use Padre::Document::Perl;
 use Padre::MimeTypes;
 
 our @ISA = 'Padre::Document::Perl';
-
-our $VERSION = '0.04';
 
 use Class::XSAccessor accessors => [qw(icon_path icon_set panel plugin process)];
 
@@ -58,3 +68,28 @@ sub store_cursor_position {
 }
 
 1;
+
+__END__
+=pod
+
+=head1 NAME
+
+Padre::Document::PSGI - Handlers PSGI files in Padre
+
+=head1 VERSION
+
+version 0.100970
+
+=head1 AUTHOR
+
+  Patrick Donelan <pat@patspam.com>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Patrick Donelan.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+
