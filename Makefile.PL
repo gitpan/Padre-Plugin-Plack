@@ -30,7 +30,7 @@ my %WriteMakefileArgs = (
                                            },
                        'ABSTRACT' => 'PSGI/Plack plugin for Padre',
                        'EXE_FILES' => [],
-                       'VERSION' => '0.100970',
+                       'VERSION' => '0.101150',
                        'PREREQ_PM' => {
                                         'Wx' => '0',
                                         'Padre::Util' => '0',
@@ -40,7 +40,7 @@ my %WriteMakefileArgs = (
                                         'Padre::Document::Perl' => '0',
                                         'Proc::Killfam' => '0',
                                         'File::Which' => '0',
-                                        'Padre' => '0.59',
+                                        'Padre' => '0.60',
                                         'Padre::Wx' => '0',
                                         'Padre::MimeTypes' => '0',
                                         'File::Find::Rule' => '0',

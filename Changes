@@ -1,5 +1,9 @@
 Revision history for Padre::Plugin::Plack
 
+0.101150  2010-04-24 21:32:22 EST5EDT
+* Now works more seamlessly with Padre::Wx::Output
+* Requires Padre 0.60
+
 0.100970  2010-04-07 15:34:50 EST5EDT
 * Switched to Dist::Zilla
 

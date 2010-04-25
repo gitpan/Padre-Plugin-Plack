@@ -8,7 +8,7 @@
 # 
 package Padre::Document::PSGI;
 BEGIN {
-  $Padre::Document::PSGI::VERSION = '0.100970';
+  $Padre::Document::PSGI::VERSION = '0.101150';
 }
 # ABSTRACT: Handlers PSGI files in Padre
 
@@ -78,7 +78,7 @@ Padre::Document::PSGI - Handlers PSGI files in Padre
 
 =head1 VERSION
 
-version 0.100970
+version 0.101150
 
 =head1 AUTHOR
 

@@ -7,6 +7,7 @@
 # the same terms as the Perl 5 programming language system itself.
 # 
 package Padre::Plugin::Plack::Panel;
+# ABSTRACT: Plack control panel
 
 use strict;
 use warnings;
@@ -55,10 +56,6 @@ sub gettext_label {
         return 'Plackup';
     }
 }
-
-# dirty hack to allow seamless use of Padre::Wx::Output
-sub bottom { return $_[0] }
-sub main { warn "here"; return Padre::Current->main }
 
 # taken from Padre::Plugin::Catalyst
 sub led {
@@ -306,11 +303,11 @@ __END__
 
 =head1 NAME
 
-Padre::Plugin::Plack::Panel
+Padre::Plugin::Plack::Panel - Plack control panel
 
 =head1 VERSION
 
-version 0.100970
+version 0.101150
 
 =head1 AUTHOR
 

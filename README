@@ -2,7 +2,7 @@ NAME
     Padre::Plugin::Plack - PSGI/Plack plugin for Padre
 
 VERSION
-    version 0.100970
+    version 0.101150
 
 SYNOPSIS
         # cpan install Padre::Plugin::Plack;

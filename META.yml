@@ -11,7 +11,7 @@ configure_requires:
   ExtUtils::MakeMaker: 6.31
   File::ShareDir::Install: 0.03
   Module::Build: 0.3601
-generated_by: 'Dist::Zilla version 2.100922'
+generated_by: 'Dist::Zilla version 2.101040'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -24,7 +24,7 @@ requires:
   File::Basename: 0
   File::Find::Rule: 0
   File::Which: 0
-  Padre: 0.59
+  Padre: 0.60
   Padre::Current: 0
   Padre::Document::Perl: 0
   Padre::Logger: 0
@@ -43,4 +43,4 @@ requires:
 resources:
   homepage: http://padre.perlide.org
   repository: http://github.com/pdonelan/Padre-Plugin-Plack
-version: 0.100970
+version: 0.101150

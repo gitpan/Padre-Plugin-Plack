@@ -29,7 +29,7 @@ my %module_build_args = (
                                        'Padre::Document::Perl' => '0',
                                        'Proc::Killfam' => '0',
                                        'File::Which' => '0',
-                                       'Padre' => '0.59',
+                                       'Padre' => '0.60',
                                        'Padre::Wx' => '0',
                                        'Padre::MimeTypes' => '0',
                                        'File::Find::Rule' => '0',
@@ -49,7 +49,7 @@ my %module_build_args = (
                                                  'Module::Build' => '0.3601',
                                                  'File::ShareDir::Install' => '0.03'
                                                },
-                       'dist_version' => '0.100970'
+                       'dist_version' => '0.101150'
                      );
 
 

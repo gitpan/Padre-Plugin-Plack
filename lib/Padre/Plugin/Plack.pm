@@ -8,7 +8,7 @@
 # 
 package Padre::Plugin::Plack;
 BEGIN {
-  $Padre::Plugin::Plack::VERSION = '0.100970';
+  $Padre::Plugin::Plack::VERSION = '0.101150';
 }
 # ABSTRACT: PSGI/Plack plugin for Padre
 use base 'Padre::Plugin';
@@ -482,8 +482,8 @@ sub build_panel {
         HTTP::Server::Simple
         Server::Simple
         SCGI
-        Standalone::Prefork::Server::Starter
         Starman
+        Starlet
         Twiggy
         POE
         ReverseHTTP
@@ -549,7 +549,8 @@ sub build_panel {
 
     # output panel for server
     require Padre::Wx::Output;
-    my $output = Padre::Wx::Output->new($panel);
+    my $output = Padre::Wx::Output->new($self->main, $panel);
+    
     $box->Add( $output, 1, Wx::wxGROW );
 
     # wrapping it up
@@ -572,7 +573,7 @@ Padre::Plugin::Plack - PSGI/Plack plugin for Padre
 
 =head1 VERSION
 
-version 0.100970
+version 0.101150
 
 =head1 SYNOPSIS
 
