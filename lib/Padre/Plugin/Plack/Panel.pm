@@ -1,18 +1,12 @@
-# 
-# This file is part of Padre-Plugin-Plack
-# 
-# This software is copyright (c) 2010 by Patrick Donelan.
-# 
-# This is free software; you can redistribute it and/or modify it under
-# the same terms as the Perl 5 programming language system itself.
-# 
 package Padre::Plugin::Plack::Panel;
+BEGIN {
+  $Padre::Plugin::Plack::Panel::VERSION = '1.200';
+}
+
 # ABSTRACT: Plack control panel
 
 use strict;
 use warnings;
-
-our $VERSION = '0.04';
 
 use Padre::Wx   ();
 use Padre::Util ('_T');
@@ -21,43 +15,49 @@ use base 'Wx::Panel';
 use Padre::Current;
 use Padre::Logger;
 
+
 sub new {
     my $class = shift;
     my $doc   = shift;
     my $self  = $class->SUPER::new( Padre::Current->main->bottom );
-    
-    $doc->plugin->build_panel($doc, $self);
-    
+
+    $doc->plugin->build_panel( $doc, $self );
+
     return $self;
 }
+
 
 sub set_as_started {
     my $self = shift;
     $self->{start_stop}->SetLabel( _T('Stop') );
-    $self->{led}->SetBitmap( $self->led( 'green' ) );
+    $self->{led}->SetBitmap( $self->led('green') );
 }
+
 
 sub set_as_stopped {
     my $self = shift;
     $self->{start_stop}->SetLabel( _T('Start') );
-    $self->{led}->SetBitmap( $self->led( 'red' ) );
+    $self->{led}->SetBitmap( $self->led('red') );
 }
+
 
 sub output { return shift->{output} }
 
-sub gettext_label { 
+
+sub gettext_label {
     my $self = shift;
-    
+
     require File::Basename;
     my $doc = $self->{doc};
-    if (my $filename = $doc && $doc->filename) {
+    if ( my $filename = $doc && $doc->filename ) {
         return File::Basename::basename($filename);
-    } else {
+    }
+    else {
         return 'Plackup';
     }
 }
 
-# taken from Padre::Plugin::Catalyst
+
 sub led {
     my ( $self, $color ) = (@_);
 
@@ -296,6 +296,7 @@ sub led {
     return;
 }
 
+
 1;
 
 __END__
@@ -307,11 +308,29 @@ Padre::Plugin::Plack::Panel - Plack control panel
 
 =head1 VERSION
 
-version 0.101150
+version 1.200
+
+=head1 METHODS
+
+=head2 new
+
+=head2 set_as_started
+
+=head2 set_as_stopped
+
+=head2 output
+
+=head2 gettext_label
+
+=head2 led
+
+Taken from Padre::Plugin::Catalyst
+
+=head2 TRACE
 
 =head1 AUTHOR
 
-  Patrick Donelan <pat@patspam.com>
+Patrick Donelan <pdonelan@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
